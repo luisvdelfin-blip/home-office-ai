@@ -208,22 +208,29 @@ const Dashboard = () => {
                 </h2>
                 
                 <div className="grid md:grid-cols-2 gap-6">
-                  {/* Image */}
-                  <div className="space-y-4">
-                    <img 
-                      src={adResult.imagem} 
-                      alt="Anúncio gerado"
-                      className="w-full rounded-lg border border-border"
-                    />
-                    <Button 
-                      onClick={handleDownloadImage}
-                      variant="outline"
-                      className="w-full"
-                    >
-                      <Download className="mr-2 h-4 w-4" />
-                      Baixar Imagem
-                    </Button>
-                  </div>
+                 {/* Image Column - CORREGIDO */}
+<div className="space-y-4">
+  <div className="relative aspect-square w-full overflow-hidden rounded-lg border border-border bg-secondary/50">
+    {adResult.imagem ? (
+      <img
+        src={adResult.imagem}
+        alt="Anúncio gerado"
+        className="h-full w-full object-contain"
+      />
+    ) : (
+      <div className="flex h-full items-center justify-center text-muted-foreground">
+        <p>Aguardando imagem...</p>
+      </div>
+    )}
+  </div>
+
+  <Button variant="outline" className="w-full" asChild>
+    <a href={adResult.imagem} target="_blank" rel="noopener noreferrer">
+      <Download className="mr-2 h-4 w-4" />
+      Abrir Imagem HD
+    </a>
+  </Button>
+</div>
 
                   {/* Text */}
                   <div className="space-y-4">
